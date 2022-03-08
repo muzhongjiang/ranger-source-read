@@ -22,17 +22,17 @@
 	</property>
 	<property>
 		<name>ranger.jpa.jdbc.url</name>
-		<value>jdbc:log4jdbc:mysql://localhost/ranger</value>
+		<value>jdbc:log4jdbc:mysql://tencent:3306/ranger</value>
 		<description></description>
 	</property>
 	<property>
 		<name>ranger.jpa.jdbc.user</name>
-		<value>rangeradmin</value>
+		<value>root</value>
 		<description></description>
 	</property>
 	<property>
 		<name>ranger.jpa.jdbc.password</name>
-		<value>rangeradmin</value>
+		<value><![CDATA[root&password@168]]></value>
 		<description></description>
 	</property>
 	<property>
