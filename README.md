@@ -81,31 +81,79 @@ mvn clean compile package install  -Drat.skip=true -DskipTests  -X
 1、修改ranger-admin-site.xml：
 security-admin/src/main/resources/conf.dist/ranger-admin-site.xml
 ```xml
-
-
-
+	<property>
+		<name>ranger.jpa.jdbc.url</name>
+		<value>jdbc:log4jdbc:mysql://tencent:3306/ranger</value>
+		<description></description>
+	</property>
+	<property>
+		<name>ranger.jpa.jdbc.user</name>
+		<value>root</value>
+		<description></description>
+	</property>
+	<property>
+		<name>ranger.jpa.jdbc.password</name>
+		<value><![CDATA[root&password@168]]></value>
+		<description></description>
+	</property>
 
 ```
 
 2、修改security-admin/src/main/webapp/WEB-INF/web.xml
 ```xml
-
-
-
-
+<!--  <context-param>-->
+<!--    <param-name>contextConfigLocation</param-name>-->
+<!--    <param-value>META-INF/applicationContext.xml-->
+<!--			WEB-INF/classes/conf/security-applicationContext.xml-->
+<!--			META-INF/scheduler-applicationContext.xml</param-value>-->
+<!--  </context-param>-->
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>META-INF/applicationContext.xml
+      WEB-INF/classes/conf.dist/security-applicationContext.xml
+      META-INF/scheduler-applicationContext.xml</param-value>
+  </context-param>
 ```
 
 3、修改security-admin/src/main/webapp/META-INF/applicationContext.xml
 ```xml
+<!--		<property name="locations">-->
+<!--			<list>-->
+<!--				&lt;!&ndash; <value>classpath:xa_default.properties</value> &ndash;&gt;-->
+<!--				&lt;!&ndash; <value>classpath:xa_system.properties</value> &ndash;&gt;-->
+<!--				&lt;!&ndash; <value>classpath:xa_custom.properties</value> &ndash;&gt;-->
+<!--				&lt;!&ndash; <value>classpath:xa_ldap.properties</value> &ndash;&gt;-->
+<!--				<value>classpath:core-site.xml</value>-->
+<!--				<value>classpath:ranger-admin-default-site.xml</value>-->
+<!--				<value>classpath:ranger-admin-site.xml</value>-->
+<!--			</list>-->
+<!--		</property>-->
+		<property name="locations">
+			<list>
+				<!-- <value>classpath:xa_default.properties</value> -->
+				<!-- <value>classpath:xa_system.properties</value> -->
+				<!-- <value>classpath:xa_custom.properties</value> -->
+				<!-- <value>classpath:xa_ldap.properties</value> -->
+				<!-- <value>classpath:conf.dist/core-site.xml</value> -->
+				<value>classpath:conf.dist/ranger-admin-default-site.xml</value>
+				<value>classpath:conf.dist/ranger-admin-site.xml</value>
+			</list>
+		</property>
+```
 
-
-
-
+4、添加mysql driver
+pom.xml:
+```xml
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql-connector-java.version}</version>
+                <!-- <scope>test</scope>-->
+            </dependency>
 ```
 
 
-
-4、数据库配置
+5、数据库配置
 （1）、创建database：
 ```mysql
 create database ranger character set utf8mb4;
@@ -114,3 +162,11 @@ create database ranger character set utf8mb4;
 security-admin/db/mysql/optimized/current/ranger_core_db_mysql.sql
 security-admin/db/mysql/xa_audit_db.sql
 
+
+6、添加tomcat
+contextPath使用"/"
+
+
+7、访问web
+http://localhost:8080/
+admin/admin
