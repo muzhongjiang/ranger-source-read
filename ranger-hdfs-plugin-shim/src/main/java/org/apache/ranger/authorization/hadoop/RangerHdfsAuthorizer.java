@@ -25,7 +25,7 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.hadoop.hdfs.server.namenode.INodeAttributeProvider;
 import org.apache.hadoop.hdfs.server.namenode.INodeAttributes;
 import org.apache.ranger.plugin.classloader.RangerPluginClassLoader;
-
+/** hdfs鉴权实现：RangerHdfsAuthorizer  */
 public class RangerHdfsAuthorizer extends INodeAttributeProvider {
 	private static final Log LOG  = LogFactory.getLog(RangerHdfsAuthorizer.class);
 
@@ -53,7 +53,7 @@ public class RangerHdfsAuthorizer extends INodeAttributeProvider {
 		}
 
 		try {
-			
+			/*类加载器：*/
 			rangerPluginClassLoader = RangerPluginClassLoader.getInstance(RANGER_PLUGIN_TYPE, this.getClass());
 			
 			@SuppressWarnings("unchecked")

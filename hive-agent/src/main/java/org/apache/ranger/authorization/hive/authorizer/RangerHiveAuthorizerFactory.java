@@ -26,7 +26,9 @@ import org.apache.hadoop.hive.ql.security.authorization.plugin.HiveAuthorizerFac
 import org.apache.hadoop.hive.ql.security.authorization.plugin.HiveAuthzPluginException;
 import org.apache.hadoop.hive.ql.security.authorization.plugin.HiveMetastoreClientFactory;
 import org.apache.hadoop.hive.ql.security.authorization.plugin.HiveAuthzSessionContext;
-
+/**
+ * Ranger插件对所有支持的系统的扩展接口
+ */
 public class RangerHiveAuthorizerFactory implements HiveAuthorizerFactory {
 	@Override
 	public HiveAuthorizer createHiveAuthorizer(HiveMetastoreClientFactory metastoreClientFactory,

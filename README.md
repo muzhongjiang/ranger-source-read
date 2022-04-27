@@ -10,8 +10,8 @@ apache ranger-release-ranger-2.2.0
 2. 执行命令（如果出错，多试几次）:
 ```shell
 mvn clean compile package install  -Drat.skip=true -DskipTests  -X
-#mvn clean compile package install assembly:assembly  -Drat.skip=true -DskipTests 
-
+# 或：
+mvn clean compile package install assembly:assembly  -Drat.skip=true -DskipTests 
 ```
    (Ranger Admin UI tests depend on PhantomJS. If the build fails with npm or Karma errors you can either
       i. install PhantomJS dependencies for your platform (bzip2 and fontconfig)
@@ -96,7 +96,6 @@ security-admin/src/main/resources/conf.dist/ranger-admin-site.xml
 		<value><![CDATA[root&password@168]]></value>
 		<description></description>
 	</property>
-
 ```
 
 2、修改security-admin/src/main/webapp/WEB-INF/web.xml
@@ -158,6 +157,7 @@ pom.xml:
 ```mysql
 create database ranger character set utf8mb4;
 ```
+
 （2）、执行sql脚本：
 security-admin/db/mysql/optimized/current/ranger_core_db_mysql.sql
 security-admin/db/mysql/xa_audit_db.sql

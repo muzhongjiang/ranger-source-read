@@ -27,7 +27,7 @@
     <artifactId>ugsync-util</artifactId>
     <packaging>jar</packaging>
     <name>User Group Synchronizer Util</name>
-    <description>User Group Synchronizer Util</description>
+    <description>用户、组 同步（usersync）</description>
     <dependencies>
         <dependency>
             <groupId>log4j</groupId>

@@ -119,7 +119,8 @@
         <googlecode.log4jdbc.version>1.2</googlecode.log4jdbc.version>
         <gson.version>2.2.4</gson.version>
         <guice.version>4.0</guice.version>
-        <hadoop.version>3.3.0</hadoop.version>
+        <hadoop.version>3.3.2</hadoop.version>
+<!--        <hadoop.version>3.3.0</hadoop.version>-->
         <ozone.version>1.0.0</ozone.version>
         <hamcrest.version>2.2</hamcrest.version>
         <hbase.version>2.2.6</hbase.version>
@@ -211,7 +212,7 @@
         <presto.validation-api.version>2.0.1.Final</presto.validation-api.version>
         <presto.re2j.version>1.1</presto.re2j.version>
 
-    <!-- Azure Key Vault dependencies -->
+        <!-- Azure Key Vault dependencies -->
         <com.microsoft.azure.version>1.22.0</com.microsoft.azure.version>
         <com.microsoft.azure.azure-keyvault.version>1.2.1</com.microsoft.azure.azure-keyvault.version>
         <com.microsoft.azure.azure-mgmt-keyvault.version>1.22.0</com.microsoft.azure.azure-mgmt-keyvault.version>
@@ -242,52 +243,57 @@
                 <module>agents-installer</module>
                 <module>credentialbuilder</module>
                 <module>embeddedwebserver</module>
-                <module>kms</module>
-<!--                <module>hbase-agent</module>-->
+
+                <!--plugin:-->
                 <module>hdfs-agent</module>
+                <module>ranger-hdfs-plugin-shim</module>
                 <module>hive-agent</module>
-                <module>knox-agent</module>
-<!--                <module>storm-agent</module>-->
-                <module>plugin-yarn</module>
-<!--                <module>plugin-ozone</module>-->
-                <module>security-admin</module>
-<!--                <module>plugin-kafka</module>-->
-<!--                <module>plugin-solr</module>-->
-<!--                <module>plugin-nifi</module>-->
-<!--                <module>plugin-nifi-registry</module>-->
+                <module>ranger-hive-plugin-shim</module>
                 <module>plugin-presto</module>
-<!--                <module>plugin-kudu</module>-->
+                <module>ranger-presto-plugin-shim</module>
+                <module>knox-agent</module>
+                <module>ranger-knox-plugin-shim</module>
+                <module>plugin-yarn</module>
+                <module>ranger-yarn-plugin-shim</module>
+                <module>kms</module>
+                <module>plugin-kms</module>
+                <module>ranger-kms-plugin-shim</module>
+                <!--                <module>plugin-sqoop</module>-->
+                <!--                <module>ranger-sqoop-plugin-shim</module>-->
+                <!--                <module>plugin-kylin</module>-->
+                <!--                <module>ranger-kylin-plugin-shim</module>-->
+                <!--                <module>plugin-elasticsearch</module>-->
+                <!--                <module>ranger-elasticsearch-plugin-shim</module>-->
+                <!--                <module>plugin-kafka</module>-->
+                <!--                <module>ranger-kafka-plugin-shim</module>-->
+                <!--                <module>plugin-solr</module>-->
+                <!--                <module>ranger-solr-plugin-shim</module>-->
+                <!--                <module>ranger-atlas-plugin-shim</module>-->
+                <!--                <module>plugin-atlas</module>-->
+                <!--                <module>plugin-ozone</module>-->
+                <!--                <module>ranger-ozone-plugin-shim</module>-->
+                <!--                <module>storm-agent</module>-->
+                <!--                <module>ranger-storm-plugin-shim</module>-->
+                <!--                <module>hbase-agent</module>-->
+                <!--                <module>ranger-hbase-plugin-shim</module>-->
+                <!--                <module>plugin-nifi</module>-->
+                <!--                <module>plugin-nifi-registry</module>-->
+                <!--                <module>plugin-kudu</module>-->
+
+                <module>security-admin</module>
+
                 <module>ugsync-util</module>
                 <module>ugsync</module>
                 <module>ugsync/ldapconfigchecktool/ldapconfigcheck</module>
                 <module>unixauthclient</module>
                 <module>unixauthservice</module>
                 <module>ranger-util</module>
-                <module>plugin-kms</module>
                 <module>tagsync</module>
-                <module>ranger-hdfs-plugin-shim</module>
                 <module>ranger-plugin-classloader</module>
-                <module>ranger-hive-plugin-shim</module>
-<!--                <module>ranger-hbase-plugin-shim</module>-->
-                <module>ranger-knox-plugin-shim</module>
-                <module>ranger-yarn-plugin-shim</module>
-<!--                <module>ranger-ozone-plugin-shim</module>-->
-<!--                <module>ranger-storm-plugin-shim</module>-->
-<!--                <module>ranger-kafka-plugin-shim</module>-->
-<!--                <module>ranger-solr-plugin-shim</module>-->
-<!--                <module>ranger-atlas-plugin-shim</module>-->
-                <module>ranger-kms-plugin-shim</module>
-                <module>ranger-presto-plugin-shim</module>
                 <module>ranger-examples</module>
                 <module>ranger-tools</module>
-<!--                <module>plugin-atlas</module>-->
                 <module>plugin-schema-registry</module>
-<!--                <module>plugin-sqoop</module>-->
-<!--                <module>ranger-sqoop-plugin-shim</module>-->
-<!--                <module>plugin-kylin</module>-->
-<!--                <module>ranger-kylin-plugin-shim</module>-->
-<!--                <module>plugin-elasticsearch</module>-->
-<!--                <module>ranger-elasticsearch-plugin-shim</module>-->
+
                 <!--
                    'distro' should be the last module. If a module gets inserted after
                    ranger-elasticsearch-plugin-shim, make sure to update dependency in distro/pom.xml
@@ -295,419 +301,419 @@
                 <module>distro</module><!--assembly打包-->
             </modules>
         </profile>
-<!--        <profile>-->
-<!--            <id>ranger-examples</id>-->
-<!--            <modules>-->
-<!--                <module>agents-common</module>-->
-<!--                <module>agents-cred</module>-->
-<!--                <module>intg</module>-->
-<!--                <module>ranger-examples</module>-->
-<!--            </modules>-->
-<!--        </profile>-->
-<!--        <profile>-->
-<!--            <id>ranger-admin</id>-->
-<!--            <modules>-->
-<!--                <module>agents-common</module>-->
-<!--                <module>security-admin</module>-->
-<!--                <module>ugsync-util</module>-->
-<!--            </modules>-->
-<!--        </profile>-->
-<!--        <profile>-->
-<!--            <id>ranger-hdfs-plugin</id>-->
-<!--            <modules>-->
-<!--                <module>agents-audit</module>-->
-<!--                <module>agents-common</module>-->
-<!--                <module>agents-cred</module>-->
-<!--                <module>agents-installer</module>-->
-<!--                <module>credentialbuilder</module>-->
-<!--                <module>ranger-plugin-classloader</module>-->
-<!--                <module>ranger-util</module>-->
-<!--                <module>hdfs-agent</module>-->
-<!--                <module>ranger-hdfs-plugin-shim</module>-->
-<!--            </modules>-->
-<!--        </profile>-->
-<!--        <profile>-->
-<!--            <id>ranger-hive-plugin</id>-->
-<!--            <modules>-->
-<!--                <module>agents-audit</module>-->
-<!--                <module>agents-common</module>-->
-<!--                <module>agents-cred</module>-->
-<!--                <module>agents-installer</module>-->
-<!--                <module>credentialbuilder</module>-->
-<!--                <module>ranger-plugin-classloader</module>-->
-<!--                <module>ranger-util</module>-->
-<!--                <module>hive-agent</module>-->
-<!--                <module>ranger-hive-plugin-shim</module>-->
-<!--            </modules>-->
-<!--        </profile>-->
-<!--        <profile>-->
-<!--            <id>ranger-hbase-plugin</id>-->
-<!--            <modules>-->
-<!--                <module>agents-audit</module>-->
-<!--                <module>agents-common</module>-->
-<!--                <module>agents-cred</module>-->
-<!--                <module>agents-installer</module>-->
-<!--                <module>credentialbuilder</module>-->
-<!--                <module>ranger-plugin-classloader</module>-->
-<!--                <module>ranger-util</module>-->
-<!--                <module>hbase-agent</module>-->
-<!--                <module>ranger-hbase-plugin-shim</module>-->
-<!--            </modules>-->
-<!--        </profile>-->
-<!--        <profile>-->
-<!--            <id>ranger-knox-plugin</id>-->
-<!--            <modules>-->
-<!--                <module>agents-audit</module>-->
-<!--                <module>agents-common</module>-->
-<!--                <module>agents-cred</module>-->
-<!--                <module>agents-installer</module>-->
-<!--                <module>credentialbuilder</module>-->
-<!--                <module>ranger-plugin-classloader</module>-->
-<!--                <module>ranger-util</module>-->
-<!--                <module>knox-agent</module>-->
-<!--                <module>ranger-knox-plugin-shim</module>-->
-<!--            </modules>-->
-<!--        </profile>-->
-<!--        <profile>-->
-<!--            <id>ranger-storm-plugin</id>-->
-<!--            <modules>-->
-<!--                <module>agents-audit</module>-->
-<!--                <module>agents-common</module>-->
-<!--                <module>agents-cred</module>-->
-<!--                <module>agents-installer</module>-->
-<!--                <module>credentialbuilder</module>-->
-<!--                <module>ranger-plugin-classloader</module>-->
-<!--                <module>ranger-util</module>-->
-<!--                <module>storm-agent</module>-->
-<!--                <module>ranger-storm-plugin-shim</module>-->
-<!--            </modules>-->
-<!--        </profile>-->
-<!--        <profile>-->
-<!--            <id>ranger-yarn-plugin</id>-->
-<!--            <modules>-->
-<!--                <module>agents-audit</module>-->
-<!--                <module>agents-common</module>-->
-<!--                <module>agents-cred</module>-->
-<!--                <module>agents-installer</module>-->
-<!--                <module>credentialbuilder</module>-->
-<!--                <module>ranger-plugin-classloader</module>-->
-<!--                <module>ranger-util</module>-->
-<!--                <module>plugin-yarn</module>-->
-<!--                <module>ranger-yarn-plugin-shim</module>-->
-<!--            </modules>-->
-<!--        </profile>-->
-<!--    <profile>-->
-<!--            <id>ranger-ozone-plugin</id>-->
-<!--            <modules>-->
-<!--                <module>agents-audit</module>-->
-<!--                <module>agents-common</module>-->
-<!--                <module>agents-cred</module>-->
-<!--                <module>agents-installer</module>-->
-<!--                <module>credentialbuilder</module>-->
-<!--                <module>ranger-plugin-classloader</module>-->
-<!--                <module>ranger-util</module>-->
-<!--                <module>plugin-ozone</module>-->
-<!--                <module>ranger-ozone-plugin-shim</module>-->
-<!--            </modules>-->
-<!--        </profile>-->
-<!--        <profile>-->
-<!--            <id>ranger-kafka-plugin</id>-->
-<!--            <modules>-->
-<!--                <module>agents-audit</module>-->
-<!--                <module>agents-common</module>-->
-<!--                <module>agents-cred</module>-->
-<!--                <module>agents-installer</module>-->
-<!--                <module>credentialbuilder</module>-->
-<!--                <module>ranger-plugin-classloader</module>-->
-<!--                <module>ranger-util</module>-->
-<!--                <module>plugin-kafka</module>-->
-<!--                <module>ranger-kafka-plugin-shim</module>-->
-<!--            </modules>-->
-<!--        </profile>-->
-<!--        <profile>-->
-<!--            <id>ranger-solr-plugin</id>-->
-<!--            <modules>-->
-<!--                <module>agents-audit</module>-->
-<!--                <module>agents-common</module>-->
-<!--                <module>agents-cred</module>-->
-<!--                <module>agents-installer</module>-->
-<!--                <module>credentialbuilder</module>-->
-<!--                <module>ranger-plugin-classloader</module>-->
-<!--                <module>ranger-util</module>-->
-<!--                <module>plugin-solr</module>-->
-<!--                <module>ranger-solr-plugin-shim</module>-->
-<!--            </modules>-->
-<!--        </profile>-->
-<!--        <profile>-->
-<!--            <id>ranger-kms-plugin</id>-->
-<!--            <modules>-->
-<!--                <module>agents-audit</module>-->
-<!--                <module>agents-common</module>-->
-<!--                <module>agents-cred</module>-->
-<!--                <module>agents-installer</module>-->
-<!--                <module>credentialbuilder</module>-->
-<!--                <module>ranger-plugin-classloader</module>-->
-<!--                <module>ranger-util</module>-->
-<!--                <module>plugin-kms</module>-->
-<!--                <module>ranger-kms-plugin-shim</module>-->
-<!--            </modules>-->
-<!--        </profile>-->
-<!--        <profile>-->
-<!--            <id>ranger-atlas-plugin</id>-->
-<!--            <modules>-->
-<!--                <module>agents-audit</module>-->
-<!--                <module>agents-common</module>-->
-<!--                <module>agents-cred</module>-->
-<!--                <module>agents-installer</module>-->
-<!--                <module>credentialbuilder</module>-->
-<!--                <module>ranger-plugin-classloader</module>-->
-<!--                <module>ranger-util</module>-->
-<!--                <module>plugin-atlas</module>-->
-<!--                <module>ranger-atlas-plugin-shim</module>-->
-<!--            </modules>-->
-<!--        </profile>-->
-<!--        <profile>-->
-<!--            <id>ranger-sqoop-plugin</id>-->
-<!--            <modules>-->
-<!--                <module>agents-audit</module>-->
-<!--                <module>agents-common</module>-->
-<!--                <module>agents-cred</module>-->
-<!--                <module>agents-installer</module>-->
-<!--                <module>credentialbuilder</module>-->
-<!--                <module>ranger-plugin-classloader</module>-->
-<!--                <module>ranger-util</module>-->
-<!--                <module>plugin-sqoop</module>-->
-<!--                <module>ranger-sqoop-plugin-shim</module>-->
-<!--            </modules>-->
-<!--        </profile>-->
-<!--        <profile>-->
-<!--            <id>ranger-kylin-plugin</id>-->
-<!--            <modules>-->
-<!--                <module>agents-audit</module>-->
-<!--                <module>agents-common</module>-->
-<!--                <module>agents-cred</module>-->
-<!--                <module>agents-installer</module>-->
-<!--                <module>credentialbuilder</module>-->
-<!--                <module>ranger-plugin-classloader</module>-->
-<!--                <module>ranger-util</module>-->
-<!--                <module>plugin-kylin</module>-->
-<!--                <module>ranger-kylin-plugin-shim</module>-->
-<!--            </modules>-->
-<!--        </profile>-->
-<!--        <profile>-->
-<!--            <id>ranger-elasticsearch-plugin</id>-->
-<!--            <modules>-->
-<!--                <module>agents-audit</module>-->
-<!--                <module>agents-common</module>-->
-<!--                <module>agents-cred</module>-->
-<!--                <module>agents-installer</module>-->
-<!--                <module>credentialbuilder</module>-->
-<!--                <module>ranger-plugin-classloader</module>-->
-<!--                <module>ranger-util</module>-->
-<!--                <module>plugin-elasticsearch</module>-->
-<!--                <module>ranger-elasticsearch-plugin-shim</module>-->
-<!--            </modules>-->
-<!--        </profile>-->
-<!--        <profile>-->
-<!--            <id>ranger-presto-plugin</id>-->
-<!--            <modules>-->
-<!--                <module>agents-audit</module>-->
-<!--                <module>agents-common</module>-->
-<!--                <module>agents-cred</module>-->
-<!--                <module>agents-installer</module>-->
-<!--                <module>credentialbuilder</module>-->
-<!--                <module>ranger-plugin-classloader</module>-->
-<!--                <module>ranger-util</module>-->
-<!--                <module>plugin-presto</module>-->
-<!--                <module>ranger-presto-plugin-shim</module>-->
-<!--            </modules>-->
-<!--        </profile>-->
-<!--        <profile>-->
-<!--            <id>linux</id>-->
-<!--            <activation>-->
-<!--                <os>-->
-<!--                    <family>linux</family>-->
-<!--                </os>-->
-<!--            </activation>-->
-<!--            <modules>-->
-<!--                <module>jisql</module>-->
-<!--                <module>agents-audit</module>-->
-<!--                <module>agents-common</module>-->
-<!--                <module>agents-cred</module>-->
-<!--                <module>intg</module>-->
-<!--                <module>agents-installer</module>-->
-<!--                <module>credentialbuilder</module>-->
-<!--                <module>embeddedwebserver</module>-->
-<!--                <module>kms</module>-->
-<!--&lt;!&ndash;                <module>hbase-agent</module>&ndash;&gt;-->
-<!--                <module>hdfs-agent</module>-->
-<!--                <module>hive-agent</module>-->
-<!--                <module>knox-agent</module>-->
-<!--&lt;!&ndash;                <module>storm-agent</module>&ndash;&gt;-->
-<!--                <module>plugin-yarn</module>-->
-<!--&lt;!&ndash;                <module>plugin-ozone</module>&ndash;&gt;-->
-<!--                <module>security-admin</module>-->
-<!--&lt;!&ndash;                <module>plugin-kafka</module>&ndash;&gt;-->
-<!--&lt;!&ndash;                <module>plugin-solr</module>&ndash;&gt;-->
-<!--&lt;!&ndash;                <module>plugin-nifi</module>&ndash;&gt;-->
-<!--&lt;!&ndash;                <module>plugin-nifi-registry</module>&ndash;&gt;-->
-<!--&lt;!&ndash;                <module>plugin-kudu</module>&ndash;&gt;-->
-<!--                <module>ugsync-util</module>-->
-<!--                <module>ugsync</module>-->
-<!--                <module>ugsync/ldapconfigchecktool/ldapconfigcheck</module>-->
-<!--                <module>unixauthclient</module>-->
-<!--                <module>unixauthservice</module>-->
-<!--                <module>unixauthnative</module>-->
-<!--                <module>ranger-util</module>-->
-<!--                <module>plugin-kms</module>-->
-<!--                <module>tagsync</module>-->
-<!--                <module>ranger-hdfs-plugin-shim</module>-->
-<!--                <module>ranger-plugin-classloader</module>-->
-<!--                <module>ranger-hive-plugin-shim</module>-->
-<!--&lt;!&ndash;                <module>ranger-hbase-plugin-shim</module>&ndash;&gt;-->
-<!--                <module>ranger-knox-plugin-shim</module>-->
-<!--                <module>ranger-yarn-plugin-shim</module>-->
-<!--&lt;!&ndash;                <module>ranger-ozone-plugin-shim</module>&ndash;&gt;-->
-<!--&lt;!&ndash;                <module>ranger-storm-plugin-shim</module>&ndash;&gt;-->
-<!--&lt;!&ndash;                <module>ranger-kafka-plugin-shim</module>&ndash;&gt;-->
-<!--&lt;!&ndash;                <module>ranger-solr-plugin-shim</module>&ndash;&gt;-->
-<!--&lt;!&ndash;                <module>ranger-atlas-plugin-shim</module>&ndash;&gt;-->
-<!--                <module>ranger-kms-plugin-shim</module>-->
-<!--                <module>ranger-examples</module>-->
-<!--                <module>ranger-tools</module>-->
-<!--&lt;!&ndash;                <module>plugin-atlas</module>&ndash;&gt;-->
-<!--                <module>plugin-schema-registry</module>-->
-<!--&lt;!&ndash;                <module>plugin-sqoop</module>&ndash;&gt;-->
-<!--&lt;!&ndash;                <module>ranger-sqoop-plugin-shim</module>&ndash;&gt;-->
-<!--&lt;!&ndash;                <module>plugin-kylin</module>&ndash;&gt;-->
-<!--&lt;!&ndash;                <module>ranger-kylin-plugin-shim</module>&ndash;&gt;-->
-<!--                <module>plugin-presto</module>-->
-<!--                <module>ranger-presto-plugin-shim</module>-->
-<!--&lt;!&ndash;                <module>plugin-elasticsearch</module>&ndash;&gt;-->
-<!--&lt;!&ndash;                <module>ranger-elasticsearch-plugin-shim</module>&ndash;&gt;-->
-<!--                &lt;!&ndash;-->
-<!--                   'distro' should be the last module. If a module gets inserted after-->
-<!--                   ranger-elasticsearch-plugin-shim, make sure to update dependency in distro/pom.xml-->
-<!--                &ndash;&gt;-->
-<!--                <module>distro</module>-->
-<!--            </modules>-->
-<!--        </profile>-->
-<!--        <profile>-->
-<!--            <id>linux-pam</id>-->
-<!--            <activation>-->
-<!--                <os>-->
-<!--                    <family>linux</family>-->
-<!--                </os>-->
-<!--                <file>-->
-<!--                    <exists>/usr/include/security/pam_appl.h</exists>-->
-<!--                </file>-->
-<!--            </activation>-->
-<!--            <modules>-->
-<!--                <module>unixauthpam</module>-->
-<!--            </modules>-->
-<!--        </profile>-->
-<!--        <profile>-->
-<!--            <id>sign-artifacts</id>-->
-<!--            <activation>-->
-<!--                <property>-->
-<!--                    <name>sign-artifacts</name>-->
-<!--                    <value>true</value>-->
-<!--                </property>-->
-<!--            </activation>-->
-<!--            <modules>-->
-<!--                <module>jisql</module>-->
-<!--                <module>agents-audit</module>-->
-<!--                <module>agents-common</module>-->
-<!--                <module>agents-cred</module>-->
-<!--                <module>intg</module>-->
-<!--                <module>agents-installer</module>-->
-<!--                <module>credentialbuilder</module>-->
-<!--                <module>embeddedwebserver</module>-->
-<!--                <module>kms</module>-->
-<!--&lt;!&ndash;                <module>hbase-agent</module>&ndash;&gt;-->
-<!--                <module>hdfs-agent</module>-->
-<!--                <module>hive-agent</module>-->
-<!--                <module>knox-agent</module>-->
-<!--&lt;!&ndash;                <module>storm-agent</module>&ndash;&gt;-->
-<!--                <module>plugin-yarn</module>-->
-<!--&lt;!&ndash;                <module>plugin-ozone</module>&ndash;&gt;-->
-<!--                <module>security-admin</module>-->
-<!--&lt;!&ndash;                <module>plugin-kafka</module>&ndash;&gt;-->
-<!--&lt;!&ndash;                <module>plugin-solr</module>&ndash;&gt;-->
-<!--&lt;!&ndash;                <module>plugin-nifi</module>&ndash;&gt;-->
-<!--&lt;!&ndash;                <module>plugin-nifi-registry</module>&ndash;&gt;-->
-<!--                <module>plugin-presto</module>-->
-<!--                <module>ugsync-util</module>-->
-<!--                <module>ugsync</module>-->
-<!--                <module>ugsync/ldapconfigchecktool/ldapconfigcheck</module>-->
-<!--                <module>unixauthclient</module>-->
-<!--                <module>unixauthservice</module>-->
-<!--                <module>ranger-util</module>-->
-<!--                <module>plugin-kms</module>-->
-<!--                <module>tagsync</module>-->
-<!--                <module>ranger-hdfs-plugin-shim</module>-->
-<!--                <module>ranger-plugin-classloader</module>-->
-<!--                <module>ranger-hive-plugin-shim</module>-->
-<!--&lt;!&ndash;                <module>ranger-hbase-plugin-shim</module>&ndash;&gt;-->
-<!--                <module>ranger-knox-plugin-shim</module>-->
-<!--                <module>ranger-yarn-plugin-shim</module>-->
-<!--&lt;!&ndash;                <module>ranger-ozone-plugin-shim</module>&ndash;&gt;-->
-<!--&lt;!&ndash;                <module>ranger-storm-plugin-shim</module>&ndash;&gt;-->
-<!--&lt;!&ndash;                <module>ranger-kafka-plugin-shim</module>&ndash;&gt;-->
-<!--&lt;!&ndash;                <module>ranger-solr-plugin-shim</module>&ndash;&gt;-->
-<!--&lt;!&ndash;                <module>ranger-atlas-plugin-shim</module>&ndash;&gt;-->
-<!--                <module>ranger-kms-plugin-shim</module>-->
-<!--                <module>ranger-presto-plugin-shim</module>-->
-<!--                <module>ranger-examples</module>-->
-<!--                <module>ranger-tools</module>-->
-<!--&lt;!&ndash;                <module>plugin-atlas</module>&ndash;&gt;-->
-<!--                <module>plugin-schema-registry</module>-->
-<!--&lt;!&ndash;                <module>plugin-sqoop</module>&ndash;&gt;-->
-<!--&lt;!&ndash;                <module>ranger-sqoop-plugin-shim</module>&ndash;&gt;-->
-<!--&lt;!&ndash;                <module>plugin-kylin</module>&ndash;&gt;-->
-<!--&lt;!&ndash;                <module>ranger-kylin-plugin-shim</module>&ndash;&gt;-->
-<!--&lt;!&ndash;                <module>plugin-elasticsearch</module>&ndash;&gt;-->
-<!--&lt;!&ndash;                <module>ranger-elasticsearch-plugin-shim</module>&ndash;&gt;-->
-<!--            </modules>-->
-<!--            <build>-->
-<!--                <plugins>-->
-<!--                    <plugin>-->
-<!--                        <groupId>org.apache.maven.plugins</groupId>-->
-<!--                        <artifactId>maven-gpg-plugin</artifactId>-->
-<!--                        <version>1.6</version>-->
-<!--                        <executions>-->
-<!--                            <execution>-->
-<!--                                <id>sign-artifacts</id>-->
-<!--                                <phase>verify</phase>-->
-<!--                                <goals>-->
-<!--                                    <goal>sign</goal>-->
-<!--                                </goals>-->
-<!--                            </execution>-->
-<!--                        </executions>-->
-<!--                    </plugin>-->
-<!--                    <plugin>-->
-<!--                        <groupId>org.apache.maven.plugins</groupId>-->
-<!--                        <artifactId>maven-enforcer-plugin</artifactId>-->
-<!--                        <version>1.4.1</version>-->
-<!--                        <executions>-->
-<!--                            <execution>-->
-<!--                                <id>enforce-maven</id>-->
-<!--                                <goals>-->
-<!--                                    <goal>enforce</goal>-->
-<!--                                </goals>-->
-<!--                                <configuration>-->
-<!--                                    <rules>-->
-<!--                                        <requireMavenVersion>-->
-<!--                                            <version>${maven.version.required}</version>-->
-<!--                                        </requireMavenVersion>-->
-<!--                                    </rules>-->
-<!--                                </configuration>-->
-<!--                            </execution>-->
-<!--                        </executions>-->
-<!--                    </plugin>-->
-<!--                </plugins>-->
-<!--            </build>-->
-<!--        </profile>-->
+        <!--        <profile>-->
+        <!--            <id>ranger-examples</id>-->
+        <!--            <modules>-->
+        <!--                <module>agents-common</module>-->
+        <!--                <module>agents-cred</module>-->
+        <!--                <module>intg</module>-->
+        <!--                <module>ranger-examples</module>-->
+        <!--            </modules>-->
+        <!--        </profile>-->
+        <!--        <profile>-->
+        <!--            <id>ranger-admin</id>-->
+        <!--            <modules>-->
+        <!--                <module>agents-common</module>-->
+        <!--                <module>security-admin</module>-->
+        <!--                <module>ugsync-util</module>-->
+        <!--            </modules>-->
+        <!--        </profile>-->
+        <!--        <profile>-->
+        <!--            <id>ranger-hdfs-plugin</id>-->
+        <!--            <modules>-->
+        <!--                <module>agents-audit</module>-->
+        <!--                <module>agents-common</module>-->
+        <!--                <module>agents-cred</module>-->
+        <!--                <module>agents-installer</module>-->
+        <!--                <module>credentialbuilder</module>-->
+        <!--                <module>ranger-plugin-classloader</module>-->
+        <!--                <module>ranger-util</module>-->
+        <!--                <module>hdfs-agent</module>-->
+        <!--                <module>ranger-hdfs-plugin-shim</module>-->
+        <!--            </modules>-->
+        <!--        </profile>-->
+        <!--        <profile>-->
+        <!--            <id>ranger-hive-plugin</id>-->
+        <!--            <modules>-->
+        <!--                <module>agents-audit</module>-->
+        <!--                <module>agents-common</module>-->
+        <!--                <module>agents-cred</module>-->
+        <!--                <module>agents-installer</module>-->
+        <!--                <module>credentialbuilder</module>-->
+        <!--                <module>ranger-plugin-classloader</module>-->
+        <!--                <module>ranger-util</module>-->
+        <!--                <module>hive-agent</module>-->
+        <!--                <module>ranger-hive-plugin-shim</module>-->
+        <!--            </modules>-->
+        <!--        </profile>-->
+        <!--        <profile>-->
+        <!--            <id>ranger-hbase-plugin</id>-->
+        <!--            <modules>-->
+        <!--                <module>agents-audit</module>-->
+        <!--                <module>agents-common</module>-->
+        <!--                <module>agents-cred</module>-->
+        <!--                <module>agents-installer</module>-->
+        <!--                <module>credentialbuilder</module>-->
+        <!--                <module>ranger-plugin-classloader</module>-->
+        <!--                <module>ranger-util</module>-->
+        <!--                <module>hbase-agent</module>-->
+        <!--                <module>ranger-hbase-plugin-shim</module>-->
+        <!--            </modules>-->
+        <!--        </profile>-->
+        <!--        <profile>-->
+        <!--            <id>ranger-knox-plugin</id>-->
+        <!--            <modules>-->
+        <!--                <module>agents-audit</module>-->
+        <!--                <module>agents-common</module>-->
+        <!--                <module>agents-cred</module>-->
+        <!--                <module>agents-installer</module>-->
+        <!--                <module>credentialbuilder</module>-->
+        <!--                <module>ranger-plugin-classloader</module>-->
+        <!--                <module>ranger-util</module>-->
+        <!--                <module>knox-agent</module>-->
+        <!--                <module>ranger-knox-plugin-shim</module>-->
+        <!--            </modules>-->
+        <!--        </profile>-->
+        <!--        <profile>-->
+        <!--            <id>ranger-storm-plugin</id>-->
+        <!--            <modules>-->
+        <!--                <module>agents-audit</module>-->
+        <!--                <module>agents-common</module>-->
+        <!--                <module>agents-cred</module>-->
+        <!--                <module>agents-installer</module>-->
+        <!--                <module>credentialbuilder</module>-->
+        <!--                <module>ranger-plugin-classloader</module>-->
+        <!--                <module>ranger-util</module>-->
+        <!--                <module>storm-agent</module>-->
+        <!--                <module>ranger-storm-plugin-shim</module>-->
+        <!--            </modules>-->
+        <!--        </profile>-->
+        <!--        <profile>-->
+        <!--            <id>ranger-yarn-plugin</id>-->
+        <!--            <modules>-->
+        <!--                <module>agents-audit</module>-->
+        <!--                <module>agents-common</module>-->
+        <!--                <module>agents-cred</module>-->
+        <!--                <module>agents-installer</module>-->
+        <!--                <module>credentialbuilder</module>-->
+        <!--                <module>ranger-plugin-classloader</module>-->
+        <!--                <module>ranger-util</module>-->
+        <!--                <module>plugin-yarn</module>-->
+        <!--                <module>ranger-yarn-plugin-shim</module>-->
+        <!--            </modules>-->
+        <!--        </profile>-->
+        <!--    <profile>-->
+        <!--            <id>ranger-ozone-plugin</id>-->
+        <!--            <modules>-->
+        <!--                <module>agents-audit</module>-->
+        <!--                <module>agents-common</module>-->
+        <!--                <module>agents-cred</module>-->
+        <!--                <module>agents-installer</module>-->
+        <!--                <module>credentialbuilder</module>-->
+        <!--                <module>ranger-plugin-classloader</module>-->
+        <!--                <module>ranger-util</module>-->
+        <!--                <module>plugin-ozone</module>-->
+        <!--                <module>ranger-ozone-plugin-shim</module>-->
+        <!--            </modules>-->
+        <!--        </profile>-->
+        <!--        <profile>-->
+        <!--            <id>ranger-kafka-plugin</id>-->
+        <!--            <modules>-->
+        <!--                <module>agents-audit</module>-->
+        <!--                <module>agents-common</module>-->
+        <!--                <module>agents-cred</module>-->
+        <!--                <module>agents-installer</module>-->
+        <!--                <module>credentialbuilder</module>-->
+        <!--                <module>ranger-plugin-classloader</module>-->
+        <!--                <module>ranger-util</module>-->
+        <!--                <module>plugin-kafka</module>-->
+        <!--                <module>ranger-kafka-plugin-shim</module>-->
+        <!--            </modules>-->
+        <!--        </profile>-->
+        <!--        <profile>-->
+        <!--            <id>ranger-solr-plugin</id>-->
+        <!--            <modules>-->
+        <!--                <module>agents-audit</module>-->
+        <!--                <module>agents-common</module>-->
+        <!--                <module>agents-cred</module>-->
+        <!--                <module>agents-installer</module>-->
+        <!--                <module>credentialbuilder</module>-->
+        <!--                <module>ranger-plugin-classloader</module>-->
+        <!--                <module>ranger-util</module>-->
+        <!--                <module>plugin-solr</module>-->
+        <!--                <module>ranger-solr-plugin-shim</module>-->
+        <!--            </modules>-->
+        <!--        </profile>-->
+        <!--        <profile>-->
+        <!--            <id>ranger-kms-plugin</id>-->
+        <!--            <modules>-->
+        <!--                <module>agents-audit</module>-->
+        <!--                <module>agents-common</module>-->
+        <!--                <module>agents-cred</module>-->
+        <!--                <module>agents-installer</module>-->
+        <!--                <module>credentialbuilder</module>-->
+        <!--                <module>ranger-plugin-classloader</module>-->
+        <!--                <module>ranger-util</module>-->
+        <!--                <module>plugin-kms</module>-->
+        <!--                <module>ranger-kms-plugin-shim</module>-->
+        <!--            </modules>-->
+        <!--        </profile>-->
+        <!--        <profile>-->
+        <!--            <id>ranger-atlas-plugin</id>-->
+        <!--            <modules>-->
+        <!--                <module>agents-audit</module>-->
+        <!--                <module>agents-common</module>-->
+        <!--                <module>agents-cred</module>-->
+        <!--                <module>agents-installer</module>-->
+        <!--                <module>credentialbuilder</module>-->
+        <!--                <module>ranger-plugin-classloader</module>-->
+        <!--                <module>ranger-util</module>-->
+        <!--                <module>plugin-atlas</module>-->
+        <!--                <module>ranger-atlas-plugin-shim</module>-->
+        <!--            </modules>-->
+        <!--        </profile>-->
+        <!--        <profile>-->
+        <!--            <id>ranger-sqoop-plugin</id>-->
+        <!--            <modules>-->
+        <!--                <module>agents-audit</module>-->
+        <!--                <module>agents-common</module>-->
+        <!--                <module>agents-cred</module>-->
+        <!--                <module>agents-installer</module>-->
+        <!--                <module>credentialbuilder</module>-->
+        <!--                <module>ranger-plugin-classloader</module>-->
+        <!--                <module>ranger-util</module>-->
+        <!--                <module>plugin-sqoop</module>-->
+        <!--                <module>ranger-sqoop-plugin-shim</module>-->
+        <!--            </modules>-->
+        <!--        </profile>-->
+        <!--        <profile>-->
+        <!--            <id>ranger-kylin-plugin</id>-->
+        <!--            <modules>-->
+        <!--                <module>agents-audit</module>-->
+        <!--                <module>agents-common</module>-->
+        <!--                <module>agents-cred</module>-->
+        <!--                <module>agents-installer</module>-->
+        <!--                <module>credentialbuilder</module>-->
+        <!--                <module>ranger-plugin-classloader</module>-->
+        <!--                <module>ranger-util</module>-->
+        <!--                <module>plugin-kylin</module>-->
+        <!--                <module>ranger-kylin-plugin-shim</module>-->
+        <!--            </modules>-->
+        <!--        </profile>-->
+        <!--        <profile>-->
+        <!--            <id>ranger-elasticsearch-plugin</id>-->
+        <!--            <modules>-->
+        <!--                <module>agents-audit</module>-->
+        <!--                <module>agents-common</module>-->
+        <!--                <module>agents-cred</module>-->
+        <!--                <module>agents-installer</module>-->
+        <!--                <module>credentialbuilder</module>-->
+        <!--                <module>ranger-plugin-classloader</module>-->
+        <!--                <module>ranger-util</module>-->
+        <!--                <module>plugin-elasticsearch</module>-->
+        <!--                <module>ranger-elasticsearch-plugin-shim</module>-->
+        <!--            </modules>-->
+        <!--        </profile>-->
+        <!--        <profile>-->
+        <!--            <id>ranger-presto-plugin</id>-->
+        <!--            <modules>-->
+        <!--                <module>agents-audit</module>-->
+        <!--                <module>agents-common</module>-->
+        <!--                <module>agents-cred</module>-->
+        <!--                <module>agents-installer</module>-->
+        <!--                <module>credentialbuilder</module>-->
+        <!--                <module>ranger-plugin-classloader</module>-->
+        <!--                <module>ranger-util</module>-->
+        <!--                <module>plugin-presto</module>-->
+        <!--                <module>ranger-presto-plugin-shim</module>-->
+        <!--            </modules>-->
+        <!--        </profile>-->
+        <!--        <profile>-->
+        <!--            <id>linux</id>-->
+        <!--            <activation>-->
+        <!--                <os>-->
+        <!--                    <family>linux</family>-->
+        <!--                </os>-->
+        <!--            </activation>-->
+        <!--            <modules>-->
+        <!--                <module>jisql</module>-->
+        <!--                <module>agents-audit</module>-->
+        <!--                <module>agents-common</module>-->
+        <!--                <module>agents-cred</module>-->
+        <!--                <module>intg</module>-->
+        <!--                <module>agents-installer</module>-->
+        <!--                <module>credentialbuilder</module>-->
+        <!--                <module>embeddedwebserver</module>-->
+        <!--                <module>kms</module>-->
+        <!--&lt;!&ndash;                <module>hbase-agent</module>&ndash;&gt;-->
+        <!--                <module>hdfs-agent</module>-->
+        <!--                <module>hive-agent</module>-->
+        <!--                <module>knox-agent</module>-->
+        <!--&lt;!&ndash;                <module>storm-agent</module>&ndash;&gt;-->
+        <!--                <module>plugin-yarn</module>-->
+        <!--&lt;!&ndash;                <module>plugin-ozone</module>&ndash;&gt;-->
+        <!--                <module>security-admin</module>-->
+        <!--&lt;!&ndash;                <module>plugin-kafka</module>&ndash;&gt;-->
+        <!--&lt;!&ndash;                <module>plugin-solr</module>&ndash;&gt;-->
+        <!--&lt;!&ndash;                <module>plugin-nifi</module>&ndash;&gt;-->
+        <!--&lt;!&ndash;                <module>plugin-nifi-registry</module>&ndash;&gt;-->
+        <!--&lt;!&ndash;                <module>plugin-kudu</module>&ndash;&gt;-->
+        <!--                <module>ugsync-util</module>-->
+        <!--                <module>ugsync</module>-->
+        <!--                <module>ugsync/ldapconfigchecktool/ldapconfigcheck</module>-->
+        <!--                <module>unixauthclient</module>-->
+        <!--                <module>unixauthservice</module>-->
+        <!--                <module>unixauthnative</module>-->
+        <!--                <module>ranger-util</module>-->
+        <!--                <module>plugin-kms</module>-->
+        <!--                <module>tagsync</module>-->
+        <!--                <module>ranger-hdfs-plugin-shim</module>-->
+        <!--                <module>ranger-plugin-classloader</module>-->
+        <!--                <module>ranger-hive-plugin-shim</module>-->
+        <!--&lt;!&ndash;                <module>ranger-hbase-plugin-shim</module>&ndash;&gt;-->
+        <!--                <module>ranger-knox-plugin-shim</module>-->
+        <!--                <module>ranger-yarn-plugin-shim</module>-->
+        <!--&lt;!&ndash;                <module>ranger-ozone-plugin-shim</module>&ndash;&gt;-->
+        <!--&lt;!&ndash;                <module>ranger-storm-plugin-shim</module>&ndash;&gt;-->
+        <!--&lt;!&ndash;                <module>ranger-kafka-plugin-shim</module>&ndash;&gt;-->
+        <!--&lt;!&ndash;                <module>ranger-solr-plugin-shim</module>&ndash;&gt;-->
+        <!--&lt;!&ndash;                <module>ranger-atlas-plugin-shim</module>&ndash;&gt;-->
+        <!--                <module>ranger-kms-plugin-shim</module>-->
+        <!--                <module>ranger-examples</module>-->
+        <!--                <module>ranger-tools</module>-->
+        <!--&lt;!&ndash;                <module>plugin-atlas</module>&ndash;&gt;-->
+        <!--                <module>plugin-schema-registry</module>-->
+        <!--&lt;!&ndash;                <module>plugin-sqoop</module>&ndash;&gt;-->
+        <!--&lt;!&ndash;                <module>ranger-sqoop-plugin-shim</module>&ndash;&gt;-->
+        <!--&lt;!&ndash;                <module>plugin-kylin</module>&ndash;&gt;-->
+        <!--&lt;!&ndash;                <module>ranger-kylin-plugin-shim</module>&ndash;&gt;-->
+        <!--                <module>plugin-presto</module>-->
+        <!--                <module>ranger-presto-plugin-shim</module>-->
+        <!--&lt;!&ndash;                <module>plugin-elasticsearch</module>&ndash;&gt;-->
+        <!--&lt;!&ndash;                <module>ranger-elasticsearch-plugin-shim</module>&ndash;&gt;-->
+        <!--                &lt;!&ndash;-->
+        <!--                   'distro' should be the last module. If a module gets inserted after-->
+        <!--                   ranger-elasticsearch-plugin-shim, make sure to update dependency in distro/pom.xml-->
+        <!--                &ndash;&gt;-->
+        <!--                <module>distro</module>-->
+        <!--            </modules>-->
+        <!--        </profile>-->
+        <!--        <profile>-->
+        <!--            <id>linux-pam</id>-->
+        <!--            <activation>-->
+        <!--                <os>-->
+        <!--                    <family>linux</family>-->
+        <!--                </os>-->
+        <!--                <file>-->
+        <!--                    <exists>/usr/include/security/pam_appl.h</exists>-->
+        <!--                </file>-->
+        <!--            </activation>-->
+        <!--            <modules>-->
+        <!--                <module>unixauthpam</module>-->
+        <!--            </modules>-->
+        <!--        </profile>-->
+        <!--        <profile>-->
+        <!--            <id>sign-artifacts</id>-->
+        <!--            <activation>-->
+        <!--                <property>-->
+        <!--                    <name>sign-artifacts</name>-->
+        <!--                    <value>true</value>-->
+        <!--                </property>-->
+        <!--            </activation>-->
+        <!--            <modules>-->
+        <!--                <module>jisql</module>-->
+        <!--                <module>agents-audit</module>-->
+        <!--                <module>agents-common</module>-->
+        <!--                <module>agents-cred</module>-->
+        <!--                <module>intg</module>-->
+        <!--                <module>agents-installer</module>-->
+        <!--                <module>credentialbuilder</module>-->
+        <!--                <module>embeddedwebserver</module>-->
+        <!--                <module>kms</module>-->
+        <!--&lt;!&ndash;                <module>hbase-agent</module>&ndash;&gt;-->
+        <!--                <module>hdfs-agent</module>-->
+        <!--                <module>hive-agent</module>-->
+        <!--                <module>knox-agent</module>-->
+        <!--&lt;!&ndash;                <module>storm-agent</module>&ndash;&gt;-->
+        <!--                <module>plugin-yarn</module>-->
+        <!--&lt;!&ndash;                <module>plugin-ozone</module>&ndash;&gt;-->
+        <!--                <module>security-admin</module>-->
+        <!--&lt;!&ndash;                <module>plugin-kafka</module>&ndash;&gt;-->
+        <!--&lt;!&ndash;                <module>plugin-solr</module>&ndash;&gt;-->
+        <!--&lt;!&ndash;                <module>plugin-nifi</module>&ndash;&gt;-->
+        <!--&lt;!&ndash;                <module>plugin-nifi-registry</module>&ndash;&gt;-->
+        <!--                <module>plugin-presto</module>-->
+        <!--                <module>ugsync-util</module>-->
+        <!--                <module>ugsync</module>-->
+        <!--                <module>ugsync/ldapconfigchecktool/ldapconfigcheck</module>-->
+        <!--                <module>unixauthclient</module>-->
+        <!--                <module>unixauthservice</module>-->
+        <!--                <module>ranger-util</module>-->
+        <!--                <module>plugin-kms</module>-->
+        <!--                <module>tagsync</module>-->
+        <!--                <module>ranger-hdfs-plugin-shim</module>-->
+        <!--                <module>ranger-plugin-classloader</module>-->
+        <!--                <module>ranger-hive-plugin-shim</module>-->
+        <!--&lt;!&ndash;                <module>ranger-hbase-plugin-shim</module>&ndash;&gt;-->
+        <!--                <module>ranger-knox-plugin-shim</module>-->
+        <!--                <module>ranger-yarn-plugin-shim</module>-->
+        <!--&lt;!&ndash;                <module>ranger-ozone-plugin-shim</module>&ndash;&gt;-->
+        <!--&lt;!&ndash;                <module>ranger-storm-plugin-shim</module>&ndash;&gt;-->
+        <!--&lt;!&ndash;                <module>ranger-kafka-plugin-shim</module>&ndash;&gt;-->
+        <!--&lt;!&ndash;                <module>ranger-solr-plugin-shim</module>&ndash;&gt;-->
+        <!--&lt;!&ndash;                <module>ranger-atlas-plugin-shim</module>&ndash;&gt;-->
+        <!--                <module>ranger-kms-plugin-shim</module>-->
+        <!--                <module>ranger-presto-plugin-shim</module>-->
+        <!--                <module>ranger-examples</module>-->
+        <!--                <module>ranger-tools</module>-->
+        <!--&lt;!&ndash;                <module>plugin-atlas</module>&ndash;&gt;-->
+        <!--                <module>plugin-schema-registry</module>-->
+        <!--&lt;!&ndash;                <module>plugin-sqoop</module>&ndash;&gt;-->
+        <!--&lt;!&ndash;                <module>ranger-sqoop-plugin-shim</module>&ndash;&gt;-->
+        <!--&lt;!&ndash;                <module>plugin-kylin</module>&ndash;&gt;-->
+        <!--&lt;!&ndash;                <module>ranger-kylin-plugin-shim</module>&ndash;&gt;-->
+        <!--&lt;!&ndash;                <module>plugin-elasticsearch</module>&ndash;&gt;-->
+        <!--&lt;!&ndash;                <module>ranger-elasticsearch-plugin-shim</module>&ndash;&gt;-->
+        <!--            </modules>-->
+        <!--            <build>-->
+        <!--                <plugins>-->
+        <!--                    <plugin>-->
+        <!--                        <groupId>org.apache.maven.plugins</groupId>-->
+        <!--                        <artifactId>maven-gpg-plugin</artifactId>-->
+        <!--                        <version>1.6</version>-->
+        <!--                        <executions>-->
+        <!--                            <execution>-->
+        <!--                                <id>sign-artifacts</id>-->
+        <!--                                <phase>verify</phase>-->
+        <!--                                <goals>-->
+        <!--                                    <goal>sign</goal>-->
+        <!--                                </goals>-->
+        <!--                            </execution>-->
+        <!--                        </executions>-->
+        <!--                    </plugin>-->
+        <!--                    <plugin>-->
+        <!--                        <groupId>org.apache.maven.plugins</groupId>-->
+        <!--                        <artifactId>maven-enforcer-plugin</artifactId>-->
+        <!--                        <version>1.4.1</version>-->
+        <!--                        <executions>-->
+        <!--                            <execution>-->
+        <!--                                <id>enforce-maven</id>-->
+        <!--                                <goals>-->
+        <!--                                    <goal>enforce</goal>-->
+        <!--                                </goals>-->
+        <!--                                <configuration>-->
+        <!--                                    <rules>-->
+        <!--                                        <requireMavenVersion>-->
+        <!--                                            <version>${maven.version.required}</version>-->
+        <!--                                        </requireMavenVersion>-->
+        <!--                                    </rules>-->
+        <!--                                </configuration>-->
+        <!--                            </execution>-->
+        <!--                        </executions>-->
+        <!--                    </plugin>-->
+        <!--                </plugins>-->
+        <!--            </build>-->
+        <!--        </profile>-->
     </profiles>
     <distributionManagement>
         <repository>
@@ -764,7 +770,7 @@
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${mysql-connector-java.version}</version>
-<!--                <scope>test</scope>-->
+                <!--<scope>test</scope>-->
             </dependency>
             <dependency>
                 <groupId>org.mockito</groupId>
@@ -916,7 +922,7 @@
                     <artifactId>enunciate-maven-plugin</artifactId>
                     <version>${enunciate.version}</version>
                     <configuration>
-                        <enunciateArtifactId/>
+                        <enunciateArtifactId />
                         <docsDir>docs/src/site/</docsDir>
                         <source>1.8</source>
                         <target>1.8</target>
@@ -1054,7 +1060,7 @@
                         <phase>process-resources</phase>
                         <configuration>
                             <target>
-                                <echo message="${project.version}" file="${project.build.directory}/version"/>
+                                <echo message="${project.version}" file="${project.build.directory}/version" />
                             </target>
                         </configuration>
                         <goals>
