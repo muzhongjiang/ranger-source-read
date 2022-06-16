@@ -16,8 +16,8 @@ package org.apache.ranger.authorization.presto.authorizer;
 import com.google.inject.Injector;
 import com.google.inject.Scopes;
 import io.airlift.bootstrap.Bootstrap;
-import io.prestosql.spi.security.SystemAccessControl;
-import io.prestosql.spi.security.SystemAccessControlFactory;
+import io.trino.spi.security.SystemAccessControl;
+import io.trino.spi.security.SystemAccessControlFactory;
 
 import java.util.Map;
 
@@ -25,6 +25,10 @@ import static com.google.common.base.Throwables.throwIfUnchecked;
 import static io.airlift.configuration.ConfigBinder.configBinder;
 import static java.util.Objects.requireNonNull;
 
+/**
+ * ？？？？？
+ *
+ */
 public class RangerSystemAccessControlFactory
   implements SystemAccessControlFactory {
   private static final String NAME = "ranger";

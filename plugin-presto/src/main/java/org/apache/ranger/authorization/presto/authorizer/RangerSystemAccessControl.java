@@ -18,18 +18,18 @@
  */
 package org.apache.ranger.authorization.presto.authorizer;
 
-import io.prestosql.spi.connector.CatalogSchemaName;
-import io.prestosql.spi.connector.CatalogSchemaRoutineName;
-import io.prestosql.spi.connector.CatalogSchemaTableName;
-import io.prestosql.spi.connector.ColumnMetadata;
-import io.prestosql.spi.connector.SchemaTableName;
-import io.prestosql.spi.security.AccessDeniedException;
-import io.prestosql.spi.security.PrestoPrincipal;
-import io.prestosql.spi.security.Privilege;
-import io.prestosql.spi.security.SystemAccessControl;
-import io.prestosql.spi.security.SystemSecurityContext;
-import io.prestosql.spi.security.ViewExpression;
-import io.prestosql.spi.type.Type;
+import io.trino.spi.connector.CatalogSchemaName;
+import io.trino.spi.connector.CatalogSchemaRoutineName;
+import io.trino.spi.connector.CatalogSchemaTableName;
+import io.trino.spi.connector.ColumnMetadata;
+import io.trino.spi.connector.SchemaTableName;
+import io.trino.spi.security.AccessDeniedException;
+import io.trino.spi.security.TrinoPrincipal;
+import io.trino.spi.security.Privilege;
+import io.trino.spi.security.SystemAccessControl;
+import io.trino.spi.security.SystemSecurityContext;
+import io.trino.spi.security.ViewExpression;
+import io.trino.spi.type.Type;
 import org.apache.commons.lang.StringUtils;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.security.UserGroupInformation;
@@ -295,12 +295,12 @@ public class RangerSystemAccessControl
     }
   }
 
-  @Override
-  public void checkCanShowRoles(SystemSecurityContext context, String catalogName) {
-    if (!hasPermission(createResource(catalogName), context, PrestoAccessType.SHOW)) {
-      LOG.debug("RangerSystemAccessControl.checkCanShowRoles(" + catalogName + ") denied");
-      AccessDeniedException.denyShowRoles(catalogName);
-    }
+//  @Override
+  public void checkCanShowRoles(SystemSecurityContext context) {
+//    if (!hasPermission(createResource(catalogName), context, PrestoAccessType.SHOW)) {
+      LOG.debug("RangerSystemAccessControl.checkCanShowRoles() denied");
+      AccessDeniedException.denyShowRoles();
+//    }
   }
 
 
@@ -322,8 +322,8 @@ public class RangerSystemAccessControl
 
   /** SCHEMA **/
 
-  @Override
-  public void checkCanSetSchemaAuthorization(SystemSecurityContext context, CatalogSchemaName schema, PrestoPrincipal principal) {
+//  @Override
+  public void checkCanSetSchemaAuthorization(SystemSecurityContext context, CatalogSchemaName schema, TrinoPrincipal principal) {
     if (!hasPermission(createResource(schema.getCatalogName(), schema.getSchemaName()), context, PrestoAccessType.GRANT)) {
       LOG.debug("RangerSystemAccessControl.checkCanSetSchemaAuthorization(" + schema.getSchemaName() + ") denied");
       AccessDeniedException.denySetSchemaAuthorization(schema.getSchemaName(), principal);
@@ -444,7 +444,7 @@ public class RangerSystemAccessControl
   }
 
   @Override
-  public void checkCanGrantTablePrivilege(SystemSecurityContext context, Privilege privilege, CatalogSchemaTableName table, PrestoPrincipal grantee, boolean withGrantOption) {
+  public void checkCanGrantTablePrivilege(SystemSecurityContext context, Privilege privilege, CatalogSchemaTableName table, TrinoPrincipal grantee, boolean withGrantOption) {
     if (!hasPermission(createResource(table), context, PrestoAccessType.GRANT)) {
       LOG.debug("RangerSystemAccessControl.checkCanGrantTablePrivilege(" + table + ") denied");
       AccessDeniedException.denyGrantTablePrivilege(privilege.toString(), table.toString());
@@ -452,7 +452,7 @@ public class RangerSystemAccessControl
   }
 
   @Override
-  public void checkCanRevokeTablePrivilege(SystemSecurityContext context, Privilege privilege, CatalogSchemaTableName table, PrestoPrincipal revokee, boolean grantOptionFor) {
+  public void checkCanRevokeTablePrivilege(SystemSecurityContext context, Privilege privilege, CatalogSchemaTableName table, TrinoPrincipal revokee, boolean grantOptionFor) {
     if (!hasPermission(createResource(table), context, PrestoAccessType.REVOKE)) {
       LOG.debug("RangerSystemAccessControl.checkCanRevokeTablePrivilege(" + table + ") denied");
       AccessDeniedException.denyRevokeTablePrivilege(privilege.toString(), table.toString());
@@ -575,7 +575,7 @@ public class RangerSystemAccessControl
    * This is a NOOP, no filtering is applied
    */
   @Override
-  public List<ColumnMetadata> filterColumns(SystemSecurityContext context, CatalogSchemaTableName table, List<ColumnMetadata> columns) {
+  public Set<String> filterColumns(SystemSecurityContext context, CatalogSchemaTableName table, Set<String> columns) {
     return columns;
   }
 
@@ -615,7 +615,7 @@ public class RangerSystemAccessControl
 
   /** FUNCTIONS **/
   @Override
-  public void checkCanGrantExecuteFunctionPrivilege(SystemSecurityContext context, String function, PrestoPrincipal grantee, boolean grantOption) {
+  public void checkCanGrantExecuteFunctionPrivilege(SystemSecurityContext context, String function, TrinoPrincipal grantee, boolean grantOption) {
     if (!hasPermission(createFunctionResource(function), context, PrestoAccessType.GRANT)) {
       LOG.debug("RangerSystemAccessControl.checkCanGrantExecuteFunctionPrivilege(" + function + ") denied");
       AccessDeniedException.denyGrantExecuteFunctionPrivilege(function, context.getIdentity(), grantee.getName());
@@ -765,6 +765,9 @@ public class RangerSystemAccessControl
   }
 }
 
+/**
+* Ranger Presto Resource
+*/
 class RangerPrestoResource
   extends RangerAccessResourceImpl {
 

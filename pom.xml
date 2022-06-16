@@ -68,9 +68,9 @@
     </mailingLists>
     <properties>
         <maven.version.required>3.6.3</maven.version.required>
-        <java.version.required>1.8</java.version.required>
-        <javac.source.version>1.8</javac.source.version>
-        <javac.target.version>1.8</javac.target.version>
+        <java.version.required>11</java.version.required>
+        <javac.source.version>11</javac.source.version>
+        <javac.target.version>11</javac.target.version>
         <distMgmtStagingId>apache.staging.https</distMgmtStagingId>
         <distMgmtStagingName>Apache Release Distribution Repository</distMgmtStagingName>
         <distMgmtStagingUrl>https://repository.apache.org/service/local/staging/deploy/maven2</distMgmtStagingUrl>
@@ -175,7 +175,7 @@
         <orc.core.version>1.6.7</orc.core.version>
         <owasp-java-html-sanitizer.version>r239</owasp-java-html-sanitizer.version>
         <paranamer.version>2.3</paranamer.version>
-        <presto.version>333</presto.version>
+        <trino.version>370</trino.version>
         <poi.version>4.1.2</poi.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <protobuf-java.version>2.5.0</protobuf-java.version>
@@ -228,6 +228,7 @@
         <joda.time.version>2.10.6</joda.time.version>
         <log4j.core.version>2.13.3</log4j.core.version>
     </properties>
+
     <profiles>
         <profile>
             <id>all</id>
@@ -836,11 +837,13 @@
                 </plugin>
                 <plugin>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.3</version>
+                    <version>3.10.1</version>
                     <configuration>
                         <useIncrementalCompilation>false</useIncrementalCompilation>
-                        <source>${javac.source.version}</source>
-                        <target>${javac.target.version}</target>
+                        <!--                    <source>${jdk.compiler.version}</source>-->
+                        <!--                    <target>${jdk.compiler.version}</target>-->
+                        <release>11</release>
+
                         <encoding>UTF-8</encoding>
                         <maxmem>1024m</maxmem>
                         <fork>true</fork>

@@ -13,11 +13,13 @@
  */
 package org.apache.ranger.authorization.presto.authorizer;
 
-import io.prestosql.spi.Plugin;
-import io.prestosql.spi.security.SystemAccessControlFactory;
+import io.trino.spi.Plugin;
+import io.trino.spi.security.SystemAccessControlFactory;
 
 import java.util.ArrayList;
-
+/**
+ * Presto ranger plugin
+ */
 public class PrestoRangerPlugin
         implements Plugin
 {

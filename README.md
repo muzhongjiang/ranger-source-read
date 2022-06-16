@@ -9,13 +9,15 @@ apache ranger-release-ranger-2.2.0
 
 2. 执行命令（如果出错，多试几次）:
 ```shell
-mvn clean compile package install  -Drat.skip=true -DskipTests  -X
-# 或：
-mvn clean compile package install assembly:assembly  -Drat.skip=true -DskipTests 
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-11.0.2.jdk/Contents/Home
+mvn clean compile package install -Dpmd.skip=true -Dcheckstyle.skip=true -Drat.skip=true -DskipTests
 ```
    (Ranger Admin UI tests depend on PhantomJS. If the build fails with npm or Karma errors you can either
       i. install PhantomJS dependencies for your platform (bzip2 and fontconfig)
      ii. skip JavaScript test execution: mvn -DskipJSTests ...)
+
+TIP：编译Trino插件需要jdk11.x，可以先用jdk1.8编译一遍（排除Trino插件），再用jdk11编译一遍Trino插件。
+
 
 3. target目录下:
 
